@@ -1,5 +1,13 @@
+
 ```md
-# 🛍️ Cloudinary AI Re‑Color Demo Store
+# 🛍️ Cloudinary AI Re‑Color Demo Store
+
+![Cloudinary AI Recolor Preview](./public/preview.png)
+
+[![Next.js](https://img.shields.io/badge/Next.js-15-blue?logo=next.js)](https://nextjs.org/)
+[![Cloudinary](https://img.shields.io/badge/Cloudinary-AI--powered-lightblue?logo=cloudinary)](https://cloudinary.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38BDF8?logo=tailwindcss)](https://tailwindcss.com/)
+[![License](https://img.shields.io/github/license/musebe/cloudinary-ai-recolor)](./LICENSE)
 
 A **Next.js 15** sample shop that lets you:
 
@@ -11,64 +19,64 @@ A **Next.js 15** sample shop that lets you:
 
 ---
 
-## Table of Contents
+## Table of Contents
 
 1. [Prerequisites](#prerequisites)  
-2. [Local Setup](#local-setup)  
-3. [.env Configuration](#env-configuration)  
-4. [One‑Time Watermark Upload](#one-time-watermark-upload)  
-5. [Available Scripts](#available-scripts)  
-6. [Project Structure](#project-structure)  
+2. [Local Setup](#local-setup)  
+3. [.env Configuration](#env-configuration)  
+4. [One‑Time Watermark Upload](#one-time-watermark-upload)  
+5. [Available Scripts](#available-scripts)  
+6. [Project Structure](#project-structure)  
 7. [Deploying](#deploying)  
-8. [Useful Links](#useful-links)
+8. [Useful Links](#useful-links)
 
 ---
 
-## Prerequisites
+## Prerequisites
 
-* **Node 18 +** (the demo was built on 20.x)\
-  (`nvm install 20 && nvm use 20`)
-* A **Cloudinary** account (free tier works)  
-  → grab your **Cloud Name**, **API Key**, and **API Secret** from  
-  *Dashboard ▸ Programmable Media ▸ Account Details*
+- **Node 18+** (the demo was built on 20.x)  
+  `nvm install 20 && nvm use 20`
+- A **Cloudinary** account (free tier works)  
+  → grab your **Cloud Name**, **API Key**, and **API Secret** from  
+  *Dashboard ▸ Programmable Media ▸ Account Details*
 
 ---
 
-## Local Setup
+## Local Setup
 
 ```bash
-# 1 Clone repo & install deps
-git clone https://github.com/your‑org/cloudinary-shop.git
-cd cloudinary-shop
-pnpm install          # or: npm i / yarn / bun i
+# 1. Clone repo & install deps
+git clone https://github.com/musebe/cloudinary-ai-recolor.git
+cd cloudinary-ai-recolor
+npm install  # or pnpm / yarn / bun
 
-# 2 Add environment variables
+# 2. Add environment variables
 cp .env.example .env.local
-#    → open .env.local and paste YOUR Cloudinary keys (see next section)
+#    → open .env.local and paste YOUR Cloudinary keys
 
-# 3 Run the dev server
-pnpm dev
+# 3. Run the dev server
+npm dev
 # then browse http://localhost:3000
 ```
 
 ---
 
-## .env Configuration
+## .env Configuration
 
 Create **`.env.local`** in the project root with the following keys:
 
-| Key | Example | Purpose |
-|-----|---------|---------|
-| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | `my‑cloud` | Sent to the browser for URL generation |
-| `NEXT_PUBLIC_CLOUDINARY_FOLDER` | `demo-store` | Keeps all project assets in one folder |
-| `CLOUDINARY_API_KEY` | `123456789012345` | Used **server‑side only** for signed uploads |
-| `CLOUDINARY_API_SECRET` | `s0m3‑sup3r‑s3cr3t` | Same as above |
+| Key                             | Example            | Purpose                                            |
+|----------------------------------|----------------------|----------------------------------------------------|
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | `my-cloud`           | Sent to the browser for URL generation             |
+| `NEXT_PUBLIC_CLOUDINARY_FOLDER`     | `demo-store`         | Keeps all project assets in one folder             |
+| `CLOUDINARY_API_KEY`               | `123456789012345`    | Used server-side only for signed uploads           |
+| `CLOUDINARY_API_SECRET`           | `s0m3-sup3r-s3cr3t`  | Same as above                                      |
 
-> **Never commit real keys** &mdash; `.env.local` is already in `.gitignore`.
+> **Never commit real keys** — `.env.local` is already in `.gitignore`.
 
 ---
 
-## One‑Time Watermark Upload
+## One‑Time Watermark Upload
 
 The project expects an asset at **`demo-store/watermark.png`**.  
 Run the snippet below **once** (after you’ve created `.env.local`) to push your watermark into Cloudinary:
@@ -81,72 +89,50 @@ cld.config({
   api_key:    process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
-cld.uploader.upload('watermark.png', {          // ↩️ put your PNG/SVG next to package.json
-  folder:    process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER, // demo-store
-  public_id: 'watermark'                                  // demo-store/watermark
+cld.uploader.upload('watermark.png', {
+  folder:    process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER,
+  public_id: 'watermark'
 }).then(r => console.log('✅  Watermark uploaded →', r.secure_url))
   .catch(console.error);
 JS
 ```
 
-When you see a **✅ URL**, restart `pnpm dev`.  
-All generated color variants will now include the watermark in the bottom‑right corner.
+---
+
+## Available Scripts
+
+| Command                        | What it does                                 |
+|-------------------------------|----------------------------------------------|
+| `npm run dev`                    | Local development (Next.js 15 + Fast Refresh) |
+| `npm run build && npm run start`    | Production build & server                    |
+| `npm lint`                   | ESLint + `tsc --noEmit` type-checking       |
 
 ---
 
-## Available Scripts
 
-| Command | What it does |
-|---------|--------------|
-| `pnpm dev` | Local development (Next.js 15 with Fast Refresh) |
-| `pnpm build && pnpm start` | Production build & server |
-| `pnpm lint` | ESLint + `tsc --noEmit` type‑checking |
+
+## Deploying
+
+The repo is **Vercel-ready**:
+
+1. Push to GitHub / GitLab / Bitbucket  
+2. “Import” the repo into Vercel  
+3. Add the same four env vars from `.env.local`  
+4. Click **Deploy** 🚀
+
+> Works great with **Netlify** or **Render** too — just set env vars.
 
 ---
 
-## Project Structure (highlights)
+## Useful Links
 
+- 📘 [Generative Recolor docs](https://cloudinary.com/documentation/transformation_reference#e_gen_recolor)
+- 💫 [Motion.dev animations](https://motion.dev)
+- 🧠 [Next.js Image optimization](https://nextjs.org/docs/app/building-your-application/optimizing/images)
+- 🛠 [shadcn/ui](https://ui.shadcn.com)
+
+---
+
+Enjoy building — and recoloring — your store! 🌈🛒
 ```
-.
-├─ app/                              # App‑Router routes
-│  ├─ page.tsx                       # Home (product grid + uploader)
-│  └─ products/[id]/page.tsx         # Product detail with color switcher
-├─ components/
-│  ├─ image-uploader.tsx             # Client component (Dialog + Motion loading)
-│  └─ ui/*                           # shadcn‑generated primitives
-├─ lib/
-│  ├─ cld.ts                         # Cloudinary client (browser + node)
-│  ├─ buildVariant.ts                # generativeRecolor + watermark helper
-│  └─ fileDb.ts                      # Tiny JSON “database”
-├─ data/products.json                # Persists products across restarts
-└─ app/api/upload/route.ts           # Signed upload + recolor variant creation
-```
 
----
-
-## Deploying
-
-The repo is **Vercel‑ready**:
-
-1. Push to GitHub / GitLab / Bitbucket.  
-2. “Import” in Vercel ↗️ choose your repo.  
-3. Add the **same four env vars** (`NEXT_PUBLIC_CLOUDINARY_*`, `CLOUDINARY_API_*`).  
-4. Hit **Deploy** – your demo is live worldwide.
-
-*(Netlify / Render work the same—just set env vars.)*
-
----
-
-## Useful Links
-
-* **Generative Recolor docs**  
-  <https://cloudinary.com/documentation/transformation_reference#e_gen_recolor>
-* **Motion.dev animations**  
-  <https://motion.dev>
-* **Next.js Image optimization**  
-  <https://nextjs.org/docs/app/building-your-application/optimizing/images>
-* **shadcn/ui**  
-  <https://ui.shadcn.com>
-
-Enjoy building—and recoloring—your store! 🚀
-```
