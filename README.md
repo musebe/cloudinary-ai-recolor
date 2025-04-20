@@ -1,7 +1,22 @@
-```md
 # 🛍️ Cloudinary AI Re‑Color Demo Store
 
+> A modern demo shop to generate color variants using Cloudinary AI.
+
 ![Cloudinary AI Recolor Preview](preview.png)
+
+---
+
+## ✨ Features
+
+- Upload a product image
+- Instantly generate unlimited color variants via **Cloudinary Generative Recolor**
+- Reusable watermark overlay
+- JSON-based data persistence (no database)
+- Built with **Next.js 15**, **Tailwind CSS 4**, **shadcn/ui**, and **Motion.dev**
+
+---
+
+## 🛠 Built With
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-blue?logo=next.js)](https://nextjs.org/)
 [![Cloudinary](https://img.shields.io/badge/Cloudinary-AI--powered-lightblue?logo=cloudinary)](https://cloudinary.com/)
@@ -10,78 +25,73 @@
 
 ---
 
-A **Next.js 15** sample shop that lets you:
-
-1. Upload one product image.
-2. Instantly generate any number of color variants using **Cloudinary’s Generative Recolor** transformation.
-3. Overlay a reusable watermark on every variant.
-4. Persist product data in a simple JSON file (no database to install).
-5. Enjoy a modern UI (Tailwind 4 + shadcn + Motion.dev) with smooth page and hover animations.
-
----
-
 ## 📚 Table of Contents
 
-1. [Prerequisites](#prerequisites)  
-2. [Local Setup](#local-setup)  
-3. [.env Configuration](#env-configuration)  
-4. [One‑Time Watermark Upload](#one-time-watermark-upload)  
-5. [Available Scripts](#available-scripts)  
-6. [Deploying](#deploying)  
-7. [Useful Links](#useful-links)
+- [Prerequisites](#prerequisites)
+- [Local Setup](#local-setup)
+- [.env Configuration](#env-configuration)
+- [One-Time Watermark Upload](#one-time-watermark-upload)
+- [Available Scripts](#available-scripts)
+- [Deploying](#deploying)
+- [Useful Links](#useful-links)
 
 ---
 
 ## ✅ Prerequisites
 
-- **Node 18+** (the demo was built on 20.x)  
-  ```bash
-  nvm install 20 && nvm use 20
-  ```
-- A **Cloudinary** account (free tier works)  
-  → grab your **Cloud Name**, **API Key**, and **API Secret** from  
-  *Dashboard ▸ Programmable Media ▸ Account Details*
+- **Node.js 18+** (tested on Node 20)
+
+```bash
+nvm install 20
+nvm use 20
+```
+
+- A free [Cloudinary](https://cloudinary.com/) account  
+  → Grab your **Cloud Name**, **API Key**, and **API Secret**
 
 ---
 
 ## 🚀 Local Setup
 
 ```bash
-# 1. Clone repo & install deps
+# 1. Clone the repo
 git clone https://github.com/musebe/cloudinary-ai-recolor.git
 cd cloudinary-ai-recolor
+
+# 2. Install dependencies
 npm install  # or pnpm / yarn / bun
 
-# 2. Add environment variables
+# 3. Add environment variables
 cp .env.example .env.local
-#    → open .env.local and paste YOUR Cloudinary keys
+#    → Paste your Cloudinary keys in .env.local
 
-# 3. Run the dev server
+# 4. Run the dev server
 npm run dev
-# then browse http://localhost:3000
+#    → Visit http://localhost:3000
 ```
 
 ---
 
 ## ⚙️ .env Configuration
 
-Create **`.env.local`** in the project root with the following keys:
+Create a `.env.local` file in the root directory with the following:
 
-| Key                                 | Example             | Purpose                                           |
-|-------------------------------------|---------------------|---------------------------------------------------|
-| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | `my-cloud`          | Sent to the browser for URL generation            |
-| `NEXT_PUBLIC_CLOUDINARY_FOLDER`     | `demo-store`        | Keeps all project assets in one folder            |
-| `CLOUDINARY_API_KEY`                | `123456789012345`   | Used server-side only for signed uploads          |
-| `CLOUDINARY_API_SECRET`             | `s0m3-sup3r-s3cr3t` | Same as above                                     |
+| Key                                 | Example             | Description                              |
+|-------------------------------------|---------------------|------------------------------------------|
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | `my-cloud`          | Public Cloudinary cloud name             |
+| `NEXT_PUBLIC_CLOUDINARY_FOLDER`     | `demo-store`        | Folder for all assets                    |
+| `CLOUDINARY_API_KEY`                | `123456789012345`   | API Key (server-side use)                |
+| `CLOUDINARY_API_SECRET`             | `s0m3-sup3r-s3cr3t` | API Secret (server-side use)             |
 
-> **Never commit real keys** — `.env.local` is already in `.gitignore`.
+> ⚠️ Do **not** commit real keys. `.env.local` is in `.gitignore`.
 
 ---
 
-## 🖼️ One‑Time Watermark Upload
+## 🖼️ One-Time Watermark Upload
 
-The project expects an asset at **`demo-store/watermark.png`**.  
-Run the snippet below **once** (after you’ve created `.env.local`) to push your watermark into Cloudinary:
+The app expects `demo-store/watermark.png` to exist in Cloudinary.
+
+Upload your watermark manually or run this script (after `.env.local` is set):
 
 ```bash
 node - <<'JS'
@@ -94,44 +104,44 @@ cld.config({
 cld.uploader.upload('watermark.png', {
   folder:    process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER,
   public_id: 'watermark'
-}).then(r => console.log('✅  Watermark uploaded →', r.secure_url))
+}).then(r => console.log('✅ Watermark uploaded →', r.secure_url))
   .catch(console.error);
 JS
 ```
 
 ---
 
-## 🛠 Available Scripts
+## 📜 Available Scripts
 
-| Command                            | What it does                                   |
-|-----------------------------------|------------------------------------------------|
-| `npm run dev`                     | Local development (Next.js 15 + Fast Refresh)  |
-| `npm run build && npm run start` | Production build & server                      |
-| `npm run lint`                    | ESLint + `tsc --noEmit` type-checking         |
+| Command                   | Description                            |
+|---------------------------|----------------------------------------|
+| `npm run dev`             | Start local dev server                 |
+| `npm run build`           | Build the app                          |
+| `npm run start`           | Run production server                  |
+| `npm run lint`            | Run ESLint and TypeScript checks       |
 
 ---
 
-## 🌍 Deploying
+## 🌍 Deployment
 
-The repo is **Vercel-ready**:
+This repo is ready for **Vercel**:
 
-1. Push to GitHub / GitLab / Bitbucket  
-2. “Import” the repo into Vercel  
-3. Add the same four env vars from `.env.local`  
-4. Click **Deploy** 🚀
+1. Push to GitHub
+2. Import into [vercel.com](https://vercel.com/)
+3. Add the same environment variables
+4. Click **Deploy**
 
-> Works great with **Netlify** or **Render** too — just set env vars.
+Also works with **Netlify** and **Render** — just set the same env vars.
 
 ---
 
 ## 🔗 Useful Links
 
-- 📘 [Generative Recolor docs](https://cloudinary.com/documentation/transformation_reference#e_gen_recolor)
-- 💫 [Motion.dev animations](https://motion.dev)
-- 🧠 [Next.js Image optimization](https://nextjs.org/docs/app/building-your-application/optimizing/images)
+- 📘 [Generative Recolor Docs](https://cloudinary.com/documentation/transformation_reference#e_gen_recolor)
+- 💫 [Motion.dev](https://motion.dev)
+- 🧠 [Next.js Image Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/images)
 - 🛠 [shadcn/ui](https://ui.shadcn.com)
 
 ---
 
-Enjoy building — and recoloring — your store! 🌈🛒
-```
+**Enjoy building — and recoloring — your store!** 🌈🛒
