@@ -1,12 +1,30 @@
+Absolutely! Here's a polished and **GitHub-ready** version of your `README.md` that should render perfectly, including working shields, correct markdown formatting, and image preview compatibility.
+
+Make sure `preview.png` is in the **root of the repository**, and you're good to go 🚀
+
+---
+
 ```md
 # 🛍️ Cloudinary AI Re‑Color Demo Store
 
-![Cloudinary AI Recolor Preview](preview.png)
+<p align="center">
+  <img src="./preview.png" alt="Cloudinary AI Recolor Preview" width="100%" />
+</p>
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-blue?logo=next.js)](https://nextjs.org/)
-[![Cloudinary](https://img.shields.io/badge/Cloudinary-AI--powered-lightblue?logo=cloudinary)](https://cloudinary.com/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38BDF8?logo=tailwindcss)](https://tailwindcss.com/)
-[![License](https://img.shields.io/github/license/musebe/cloudinary-ai-recolor)](./LICENSE)
+<p align="center">
+  <a href="https://nextjs.org/">
+    <img src="https://img.shields.io/badge/Next.js-15-blue?logo=next.js" alt="Next.js" />
+  </a>
+  <a href="https://cloudinary.com/">
+    <img src="https://img.shields.io/badge/Cloudinary-AI--powered-lightblue?logo=cloudinary" alt="Cloudinary" />
+  </a>
+  <a href="https://tailwindcss.com/">
+    <img src="https://img.shields.io/badge/Tailwind-4.0-38BDF8?logo=tailwindcss" alt="Tailwind CSS" />
+  </a>
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/github/license/musebe/cloudinary-ai-recolor" alt="License" />
+  </a>
+</p>
 
 A **Next.js 15** sample shop that lets you:
 
@@ -18,30 +36,31 @@ A **Next.js 15** sample shop that lets you:
 
 ---
 
-## Table of Contents
+## 📚 Table of Contents
 
 1. [Prerequisites](#prerequisites)  
 2. [Local Setup](#local-setup)  
 3. [.env Configuration](#env-configuration)  
 4. [One‑Time Watermark Upload](#one-time-watermark-upload)  
 5. [Available Scripts](#available-scripts)  
-6. [Project Structure](#project-structure)  
-7. [Deploying](#deploying)  
-8. [Useful Links](#useful-links)
+6. [Deploying](#deploying)  
+7. [Useful Links](#useful-links)
 
 ---
 
-## Prerequisites
+## ✅ Prerequisites
 
 - **Node 18+** (the demo was built on 20.x)  
-  `nvm install 20 && nvm use 20`
+  ```bash
+  nvm install 20 && nvm use 20
+  ```
 - A **Cloudinary** account (free tier works)  
   → grab your **Cloud Name**, **API Key**, and **API Secret** from  
   *Dashboard ▸ Programmable Media ▸ Account Details*
 
 ---
 
-## Local Setup
+## 🚀 Local Setup
 
 ```bash
 # 1. Clone repo & install deps
@@ -60,22 +79,22 @@ npm run dev
 
 ---
 
-## .env Configuration
+## ⚙️ .env Configuration
 
 Create **`.env.local`** in the project root with the following keys:
 
-| Key                                | Example             | Purpose                                           |
-|-----------------------------------|---------------------|---------------------------------------------------|
+| Key                                 | Example             | Purpose                                           |
+|-------------------------------------|---------------------|---------------------------------------------------|
 | `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | `my-cloud`          | Sent to the browser for URL generation            |
 | `NEXT_PUBLIC_CLOUDINARY_FOLDER`     | `demo-store`        | Keeps all project assets in one folder            |
 | `CLOUDINARY_API_KEY`                | `123456789012345`   | Used server-side only for signed uploads          |
-| `CLOUDINARY_API_SECRET`            | `s0m3-sup3r-s3cr3t` | Same as above                                     |
+| `CLOUDINARY_API_SECRET`             | `s0m3-sup3r-s3cr3t` | Same as above                                     |
 
 > **Never commit real keys** — `.env.local` is already in `.gitignore`.
 
 ---
 
-## One‑Time Watermark Upload
+## 🖼️ One‑Time Watermark Upload
 
 The project expects an asset at **`demo-store/watermark.png`**.  
 Run the snippet below **once** (after you’ve created `.env.local`) to push your watermark into Cloudinary:
@@ -98,7 +117,7 @@ JS
 
 ---
 
-## Available Scripts
+## 🛠 Available Scripts
 
 | Command                            | What it does                                   |
 |-----------------------------------|------------------------------------------------|
@@ -106,8 +125,9 @@ JS
 | `npm run build && npm run start` | Production build & server                      |
 | `npm run lint`                    | ESLint + `tsc --noEmit` type-checking         |
 
+---
 
-## Deploying
+## 🌍 Deploying
 
 The repo is **Vercel-ready**:
 
@@ -120,7 +140,7 @@ The repo is **Vercel-ready**:
 
 ---
 
-## Useful Links
+## 🔗 Useful Links
 
 - 📘 [Generative Recolor docs](https://cloudinary.com/documentation/transformation_reference#e_gen_recolor)
 - 💫 [Motion.dev animations](https://motion.dev)
@@ -131,3 +151,5 @@ The repo is **Vercel-ready**:
 
 Enjoy building — and recoloring — your store! 🌈🛒
 ```
+
+---
