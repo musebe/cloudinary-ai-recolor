@@ -1,30 +1,14 @@
-Absolutely! Here's a polished and **GitHub-ready** version of your `README.md` that should render perfectly, including working shields, correct markdown formatting, and image preview compatibility.
-
-Make sure `preview.png` is in the **root of the repository**, and you're good to go 🚀
-
----
-
 ```md
 # 🛍️ Cloudinary AI Re‑Color Demo Store
 
-<p align="center">
-  <img src="./preview.png" alt="Cloudinary AI Recolor Preview" width="100%" />
-</p>
+![Cloudinary AI Recolor Preview](preview.png)
 
-<p align="center">
-  <a href="https://nextjs.org/">
-    <img src="https://img.shields.io/badge/Next.js-15-blue?logo=next.js" alt="Next.js" />
-  </a>
-  <a href="https://cloudinary.com/">
-    <img src="https://img.shields.io/badge/Cloudinary-AI--powered-lightblue?logo=cloudinary" alt="Cloudinary" />
-  </a>
-  <a href="https://tailwindcss.com/">
-    <img src="https://img.shields.io/badge/Tailwind-4.0-38BDF8?logo=tailwindcss" alt="Tailwind CSS" />
-  </a>
-  <a href="./LICENSE">
-    <img src="https://img.shields.io/github/license/musebe/cloudinary-ai-recolor" alt="License" />
-  </a>
-</p>
+[![Next.js](https://img.shields.io/badge/Next.js-15-blue?logo=next.js)](https://nextjs.org/)
+[![Cloudinary](https://img.shields.io/badge/Cloudinary-AI--powered-lightblue?logo=cloudinary)](https://cloudinary.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38BDF8?logo=tailwindcss)](https://tailwindcss.com/)
+[![License](https://img.shields.io/github/license/musebe/cloudinary-ai-recolor)](./LICENSE)
+
+---
 
 A **Next.js 15** sample shop that lets you:
 
@@ -151,5 +135,3 @@ The repo is **Vercel-ready**:
 
 Enjoy building — and recoloring — your store! 🌈🛒
 ```
-
----
