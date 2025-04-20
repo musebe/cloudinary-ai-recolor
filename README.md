@@ -1,8 +1,7 @@
-
 ```md
 # 🛍️ Cloudinary AI Re‑Color Demo Store
 
-![Cloudinary AI Recolor Preview](./public/preview.png)
+![Cloudinary AI Recolor Preview](preview.png)
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-blue?logo=next.js)](https://nextjs.org/)
 [![Cloudinary](https://img.shields.io/badge/Cloudinary-AI--powered-lightblue?logo=cloudinary)](https://cloudinary.com/)
@@ -55,7 +54,7 @@ cp .env.example .env.local
 #    → open .env.local and paste YOUR Cloudinary keys
 
 # 3. Run the dev server
-npm dev
+npm run dev
 # then browse http://localhost:3000
 ```
 
@@ -65,12 +64,12 @@ npm dev
 
 Create **`.env.local`** in the project root with the following keys:
 
-| Key                             | Example            | Purpose                                            |
-|----------------------------------|----------------------|----------------------------------------------------|
-| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | `my-cloud`           | Sent to the browser for URL generation             |
-| `NEXT_PUBLIC_CLOUDINARY_FOLDER`     | `demo-store`         | Keeps all project assets in one folder             |
-| `CLOUDINARY_API_KEY`               | `123456789012345`    | Used server-side only for signed uploads           |
-| `CLOUDINARY_API_SECRET`           | `s0m3-sup3r-s3cr3t`  | Same as above                                      |
+| Key                                | Example             | Purpose                                           |
+|-----------------------------------|---------------------|---------------------------------------------------|
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | `my-cloud`          | Sent to the browser for URL generation            |
+| `NEXT_PUBLIC_CLOUDINARY_FOLDER`     | `demo-store`        | Keeps all project assets in one folder            |
+| `CLOUDINARY_API_KEY`                | `123456789012345`   | Used server-side only for signed uploads          |
+| `CLOUDINARY_API_SECRET`            | `s0m3-sup3r-s3cr3t` | Same as above                                     |
 
 > **Never commit real keys** — `.env.local` is already in `.gitignore`.
 
@@ -101,14 +100,11 @@ JS
 
 ## Available Scripts
 
-| Command                        | What it does                                 |
-|-------------------------------|----------------------------------------------|
-| `npm run dev`                    | Local development (Next.js 15 + Fast Refresh) |
-| `npm run build && npm run start`    | Production build & server                    |
-| `npm lint`                   | ESLint + `tsc --noEmit` type-checking       |
-
----
-
+| Command                            | What it does                                   |
+|-----------------------------------|------------------------------------------------|
+| `npm run dev`                     | Local development (Next.js 15 + Fast Refresh)  |
+| `npm run build && npm run start` | Production build & server                      |
+| `npm run lint`                    | ESLint + `tsc --noEmit` type-checking         |
 
 
 ## Deploying
@@ -135,4 +131,3 @@ The repo is **Vercel-ready**:
 
 Enjoy building — and recoloring — your store! 🌈🛒
 ```
-
