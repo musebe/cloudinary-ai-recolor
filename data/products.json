@@ -1,0 +1,189 @@
+[
+  {
+    "id": "f0faa35f-7057-4207-85eb-b3ec18c92c8d",
+    "name": "My Tee",
+    "price": 29.99,
+    "publicId": "demo-store/phh37dfdmxda7owdirjv",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/phh37dfdmxda7owdirjv?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_green/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/phh37dfdmxda7owdirjv?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_white/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/phh37dfdmxda7owdirjv?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/phh37dfdmxda7owdirjv?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_red/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/phh37dfdmxda7owdirjv?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_blue/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/phh37dfdmxda7owdirjv?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "e1dcd753-6f20-4458-a1b3-4b774bcddbc8",
+    "name": "My Tee",
+    "price": 29.99,
+    "publicId": "demo-store/fwpi5qoj3pd3kmlpxigb",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/fwpi5qoj3pd3kmlpxigb?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_white/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/fwpi5qoj3pd3kmlpxigb?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_red/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/fwpi5qoj3pd3kmlpxigb?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_green/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/fwpi5qoj3pd3kmlpxigb?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "756a8f5f-2abd-40b4-b489-70d9e56ba1bf",
+    "name": "My Tee",
+    "price": 29.99,
+    "publicId": "demo-store/xj7enta4izt6ah74s3uy",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/xj7enta4izt6ah74s3uy?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/xj7enta4izt6ah74s3uy?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_white/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/xj7enta4izt6ah74s3uy?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_green/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/xj7enta4izt6ah74s3uy?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_red/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/xj7enta4izt6ah74s3uy?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "17f1f424-d51d-4b80-989a-633a3476b6de",
+    "name": "My Tee",
+    "price": 29.99,
+    "publicId": "demo-store/d3uou1jfdypdp8elgsmr",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/d3uou1jfdypdp8elgsmr?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_white/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/d3uou1jfdypdp8elgsmr?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/d3uou1jfdypdp8elgsmr?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "420dd4a8-342a-4244-80ca-bec744cac90e",
+    "name": "My Tee",
+    "price": 29.99,
+    "publicId": "demo-store/sdq87ifyl4uqa9a4uf6v",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/sdq87ifyl4uqa9a4uf6v?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/sdq87ifyl4uqa9a4uf6v?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_red/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/sdq87ifyl4uqa9a4uf6v?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_blue/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/sdq87ifyl4uqa9a4uf6v?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "8133110e-75d8-4ba0-a2c6-a069f1e92032",
+    "name": "My Tee",
+    "price": 29.99,
+    "publicId": "demo-store/bqmghokltctrx9ixtqjv",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/bqmghokltctrx9ixtqjv?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/bqmghokltctrx9ixtqjv?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_white/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/bqmghokltctrx9ixtqjv?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "de740ae8-592e-4e16-b849-8d3ff3e2581e",
+    "name": "My Tee",
+    "price": 29.99,
+    "publicId": "demo-store/aqk3v6ujzfygnno51weg",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/aqk3v6ujzfygnno51weg?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/aqk3v6ujzfygnno51weg?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_white/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/aqk3v6ujzfygnno51weg?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_beige/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/aqk3v6ujzfygnno51weg?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_lavender/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/aqk3v6ujzfygnno51weg?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "5233174a-f875-442d-9ba8-4a7214f8c1d8",
+    "name": "My Tee",
+    "price": 29.99,
+    "publicId": "demo-store/po5g0zn6av9pge1ykz5i",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/po5g0zn6av9pge1ykz5i?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/po5g0zn6av9pge1ykz5i?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_lavender/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/po5g0zn6av9pge1ykz5i?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_lightgray/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/po5g0zn6av9pge1ykz5i?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "0fcb078f-67b6-47c9-adf2-05f4202f4185",
+    "name": "My Tee",
+    "price": 29.99,
+    "publicId": "demo-store/edbxxo5orvcvtjea3tr4",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/edbxxo5orvcvtjea3tr4?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/edbxxo5orvcvtjea3tr4?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_lightgray/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/edbxxo5orvcvtjea3tr4?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_lavender/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/edbxxo5orvcvtjea3tr4?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "b535530b-7eec-4864-9554-b3d56317be7b",
+    "name": "Jacket",
+    "price": 50,
+    "publicId": "demo-store/mzn9tcrevukbodreyqlu",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/mzn9tcrevukbodreyqlu?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_lightgray/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/mzn9tcrevukbodreyqlu?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_lavender/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/mzn9tcrevukbodreyqlu?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_beige/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/mzn9tcrevukbodreyqlu?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "0554280d-273a-4cdd-adfa-0bb437553c70",
+    "name": "Jeans",
+    "price": 70,
+    "publicId": "demo-store/iwakbezwphywnuzqzmcz",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/iwakbezwphywnuzqzmcz?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/iwakbezwphywnuzqzmcz?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_gray/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/iwakbezwphywnuzqzmcz?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_white/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/iwakbezwphywnuzqzmcz?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "ca7be70b-5b1c-4e3c-92de-0b2a561ea003",
+    "name": "Hoodie",
+    "price": 50,
+    "publicId": "demo-store/vhzuxgcuidz52m0mjgas",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/vhzuxgcuidz52m0mjgas?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_white/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/vhzuxgcuidz52m0mjgas?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_blue/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/vhzuxgcuidz52m0mjgas?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_beige/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/vhzuxgcuidz52m0mjgas?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_lavender/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/vhzuxgcuidz52m0mjgas?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "b5af0bc6-f1b5-4387-acf4-8ed0aa8c05dc",
+    "name": "Sweater",
+    "price": 80,
+    "publicId": "demo-store/u6ufpjizxlyqegvieeeg",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/u6ufpjizxlyqegvieeeg?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_white/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/u6ufpjizxlyqegvieeeg?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_lavender/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/u6ufpjizxlyqegvieeeg?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_green/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/u6ufpjizxlyqegvieeeg?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/u6ufpjizxlyqegvieeeg?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "451df21b-4f8f-4754-8d1e-b1e85ab7b5e5",
+    "name": "Cold‑weather Parka",
+    "price": 120,
+    "publicId": "demo-store/plrf4wqelrpesuvt8qu9",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/plrf4wqelrpesuvt8qu9?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_beige/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/plrf4wqelrpesuvt8qu9?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_red/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/plrf4wqelrpesuvt8qu9?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/plrf4wqelrpesuvt8qu9?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_pink/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/plrf4wqelrpesuvt8qu9?_a=DATAg1a4ZAA0"
+    ]
+  },
+  {
+    "id": "2306e297-1fac-4343-b4c0-c1dfc71d5d41",
+    "name": "Skirt",
+    "price": 59,
+    "publicId": "demo-store/x8c69gl5usfngtlmqkv1",
+    "thumb": "https://res.cloudinary.com/hackit-africa/image/upload/f_auto/q_auto/v1/demo-store/x8c69gl5usfngtlmqkv1?_a=DATAg1a4ZAA0",
+    "variants": [
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_pink/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/x8c69gl5usfngtlmqkv1?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_gray/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/x8c69gl5usfngtlmqkv1?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_black/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/x8c69gl5usfngtlmqkv1?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_lavender/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/x8c69gl5usfngtlmqkv1?_a=DATAg1a4ZAA0",
+      "https://res.cloudinary.com/hackit-africa/image/upload/e_gen_recolor:prompt_tshirt;to-color_beige/l_demo-store:watermark/fl_layer_apply,g_south_east,x_20,y_20/f_auto/q_auto/v1/demo-store/x8c69gl5usfngtlmqkv1?_a=DATAg1a4ZAA0"
+    ]
+  }
+]
