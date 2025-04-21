@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -9,20 +10,21 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetDescription,
 } from '@/components/ui/sheet';
-import { Menu, Search, User, Plus, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import clsx from 'clsx';
 import ImageUploader from './image-uploader';
 
 const LINKS = [
   { name: 'Home', href: '/' },
-  { name: 'Shop', href: '/shop' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'About cloudinary-ai-recolor', href: '/about' },
 ] as const;
 
 export default function SiteNavbar() {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className='sticky top-0 z-50 bg-background/80 backdrop-blur border-b'>
@@ -33,7 +35,12 @@ export default function SiteNavbar() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className='hidden md:flex items-center space-x-6'>
+        <motion.nav
+          className='hidden md:flex items-center space-x-6'
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
           {LINKS.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -51,33 +58,20 @@ export default function SiteNavbar() {
               </Link>
             );
           })}
-        </nav>
+        </motion.nav>
 
-        {/* Top-right icons including Add Product */}
+        {/* Actions: Add Product + Mobile Menu */}
         <div className='flex items-center space-x-2 sm:space-x-4'>
-          <Button variant='ghost' size='icon' aria-label='Search'>
-            <Search className='h-5 w-5' />
-          </Button>
-
-          <Link
-            href='/account'
-            className='flex items-center space-x-1 text-sm text-muted-foreground hover:text-primary transition-colors'
-          >
-            <User className='h-5 w-5' />
-            <span className='hidden sm:inline'>Account</span>
-          </Link>
-
-          {/* Add Product Button always visible */}
           <ImageUploader />
 
-          {/* Mobile Menu Button */}
           <div className='md:hidden'>
-            <Sheet>
+            <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant='ghost' size='icon' aria-label='Open menu'>
                   <Menu className='h-6 w-6' />
                 </Button>
               </SheetTrigger>
+
               <SheetContent side='right' className='w-64 p-6'>
                 <SheetHeader>
                   <SheetTitle>
@@ -85,23 +79,35 @@ export default function SiteNavbar() {
                       <span className='text-primary'>Q</span>uickCart
                     </Link>
                   </SheetTitle>
+                  <SheetDescription>Site navigation menu</SheetDescription>
                 </SheetHeader>
-                <nav className='mt-6 flex flex-col gap-4'>
-                  {LINKS.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className={clsx(
-                        'text-base font-medium',
-                        pathname === link.href
-                          ? 'text-primary'
-                          : 'text-muted-foreground hover:text-primary'
-                      )}
+
+                <AnimatePresence>
+                  {menuOpen && (
+                    <motion.nav
+                      initial={{ x: 50, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: 50, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className='mt-6 flex flex-col gap-4'
                     >
-                      {link.name}
-                    </Link>
-                  ))}
-                </nav>
+                      {LINKS.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className={clsx(
+                            'text-base font-medium transition-colors',
+                            pathname === link.href
+                              ? 'text-primary'
+                              : 'text-muted-foreground hover:text-primary'
+                          )}
+                        >
+                          {link.name}
+                        </Link>
+                      ))}
+                    </motion.nav>
+                  )}
+                </AnimatePresence>
               </SheetContent>
             </Sheet>
           </div>
