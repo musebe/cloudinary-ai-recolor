@@ -1,9 +1,9 @@
+// src/app/api/upload/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import cloudinary from "cloudinary";
+import cloudinary, { UploadApiResponse } from "cloudinary";
 import { v4 as uuid } from "uuid";
-import { buildVariant } from "@/lib/buildVariant";
 import { readProducts, writeProducts, Product } from "@/lib/fileDb";
-import { cld } from "@/lib/cld";// browser+node Cloudinary helper
+import { cld } from "@/lib/cld";
 
 const FOLDER = process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER!;
 
@@ -20,29 +20,52 @@ export async function POST(req: NextRequest) {
     const name = form.get("name");
     const price = Number(form.get("price") || 0);
 
-    if (typeof name !== "string" || !file)
+    if (typeof name !== "string" || !file) {
         return NextResponse.json({ error: "Missing name or file" }, { status: 400 });
+    }
 
-    /* upload original ------------------------------------------------------- */
-    const arrayBuffer = await file.arrayBuffer();
+    // Read the file into a Buffer
+    const buffer = Buffer.from(await file.arrayBuffer());
 
-    const { public_id } = await new Promise<cloudinary.UploadApiResponse>(
-        (res, rej) =>
-            cloudinary.v2.uploader
-                .upload_stream({ folder: FOLDER }, (err, r) => (err ? rej(err) : res(r!)))
-                .end(Buffer.from(arrayBuffer)),
+    // Build eager transformations as strings
+    //  - generative recolor
+    //  - apply watermark layer
+    //  - auto format & quality
+    const eager = colors.map((c) =>
+        [
+            `e_gen_recolor:prompt_tshirt;to-color_${c}`,
+            `l_${FOLDER}:watermark,g_south_east,x_20,y_20`,
+            "f_auto",
+            "q_auto",
+        ].join("/")
     );
 
-    /* build variant + thumbnail URLs --------------------------------------- */
-    const thumb = cld.image(public_id).format("auto").quality("auto").toURL();
-    const variants = colors.map((c) => buildVariant(public_id, c));
+    // Upload original + eager transforms (async)
+    const uploadResult = await new Promise<UploadApiResponse>((resolve, reject) => {
+        cloudinary.v2.uploader
+            .upload_stream(
+                { folder: FOLDER, eager, eager_async: true },
+                (err, result) => (err ? reject(err) : resolve(result!))
+            )
+            .end(buffer);
+    });
 
-    /* persist to the file “DB” --------------------------------------------- */
+    // Primary thumbnail URL
+    const thumb = cld
+        .image(uploadResult.public_id)
+        .format("auto")
+        .quality("auto")
+        .toURL();
+
+    // Eagerly generated variant URLs
+    const variants = (uploadResult.eager || []).map((v: { secure_url: any; }) => v.secure_url!);
+
+    // Persist product
     const product: Product = {
         id: uuid(),
         name,
         price,
-        publicId: public_id,
+        publicId: uploadResult.public_id,
         thumb,
         variants,
     };

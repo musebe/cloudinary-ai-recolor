@@ -9,7 +9,7 @@ export type Product = {
     variants: string[];
 };
 
-export const readProducts = async (): Promise<Product[]> => {
+export const readProducts: () => Promise<Product[]> = async () => {
     const redis = await getRedis();
     if (!redis) {
         console.warn("⚠️ Redis unavailable. Cannot read products.");

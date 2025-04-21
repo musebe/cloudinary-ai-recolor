@@ -1,8 +1,8 @@
-// Enhanced ImageUploader with Cloudinary preview, live update, and validation
-
+// src/components/ImageUploader.tsx
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -36,13 +36,11 @@ const COLORS = [
   'lavender',
   'pink',
 ] as const;
+
 type Color = (typeof COLORS)[number];
 
-export default function ImageUploader({
-  onProductAdded,
-}: {
-  onProductAdded?: () => void;
-}) {
+export default function ImageUploader() {
+  const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const [picked, setPicked] = useState<Color[]>([]);
   const [name, setName] = useState('');
@@ -54,63 +52,58 @@ export default function ImageUploader({
   const previewRef = useRef<HTMLDivElement>(null);
 
   const isValid =
-    !!name.trim() && !isNaN(Number(price)) && file && picked.length;
+    !!name.trim() &&
+    !isNaN(Number(price)) &&
+    file !== null &&
+    picked.length > 0;
 
   const upload = useCallback(async () => {
-    if (!file || !picked.length || !name || isNaN(Number(price))) return;
-
+    if (!isValid) return;
     setLoading(true);
     setError(null);
 
     const body = new FormData();
-    body.append('file', file);
+    body.append('file', file!);
     body.append('name', name);
     body.append('price', price);
     body.append('colors', JSON.stringify(picked));
 
     try {
       const res = await fetch('/api/upload', { method: 'POST', body });
-      if (!res.ok) throw new Error(`Upload failed: ${res.statusText}`);
+      if (!res.ok) throw new Error(res.statusText);
+      const newProduct = await res.json();
 
-      toast.success('Product uploaded successfully!');
+      toast.success('Product uploaded!');
       setOpen(false);
-      setPicked([]);
-      setFile(null);
       setName('');
       setPrice('');
-
-      // Generate fake Cloudinary recolor previews
-      const cloudinaryBase =
-        'https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload';
-      const folder = 'demo-store';
-      const publicId = 'sample'; // replace with actual uploaded ID if available
-
-      const generated = picked.map(
-        (color) =>
-          `${cloudinaryBase}/e_gen_recolor:prompt_tshirt;to-color_${color}/f_auto/q_auto/v1/${folder}/${publicId}`
+      setFile(null);
+      setPicked([]);
+      // scroll to previews
+      setPreviewUrls(
+        picked.map(
+          (c) =>
+            `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/e_gen_recolor:prompt_tshirt;to-color_${c}/f_auto/q_auto/v1/${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER}/${newProduct.publicId}`
+        )
       );
-
-      setPreviewUrls(generated);
-
-      setTimeout(() => {
-        previewRef.current?.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
-
-      onProductAdded?.();
+      setTimeout(
+        () => previewRef.current?.scrollIntoView({ behavior: 'smooth' }),
+        300
+      );
+      router.refresh();
     } catch (err: any) {
-      setError(err.message || 'Something went wrong');
+      setError(err.message || 'Upload failed');
       toast.error('Upload failed');
     } finally {
       setLoading(false);
     }
-  }, [file, picked, name, price]);
+  }, [file, picked, name, price, isValid, router]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant='default'>+ Add product</Button>
       </DialogTrigger>
-
       <DialogContent className='w-full max-w-md sm:rounded-lg sm:w-[90vw]'>
         <DialogTitle>Add New Product</DialogTitle>
         <DialogDescription>
@@ -121,14 +114,13 @@ export default function ImageUploader({
           <CardHeader>
             <CardTitle>Upload & Recolor</CardTitle>
           </CardHeader>
-
           <CardInner className='space-y-4'>
             <div className='space-y-2'>
               <Label>Product Name</Label>
               <Input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder='T-shirt'
+                placeholder='T‑Shirt'
               />
               {!name.trim() && (
                 <p className='text-xs text-destructive'>Name is required.</p>
@@ -209,7 +201,6 @@ function ImagePicker({
     },
     [onChange]
   );
-
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { 'image/*': [] },

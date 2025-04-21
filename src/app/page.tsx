@@ -3,6 +3,8 @@
 import { readProducts } from '@/lib/fileDb';
 import ProductGrid from '@/components/product-grid';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const products = await readProducts();
 
