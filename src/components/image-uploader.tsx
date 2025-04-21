@@ -35,7 +35,6 @@ const COLORS = [
   'lavender',
   'pink',
 ] as const;
-
 type Color = (typeof COLORS)[number];
 
 export default function ImageUploader({
@@ -62,25 +61,21 @@ export default function ImageUploader({
     if (!isValid) return;
     setLoading(true);
     setError(null);
-
     const body = new FormData();
     body.append('file', file!);
     body.append('name', name);
     body.append('price', price);
     body.append('colors', JSON.stringify(picked));
-
     try {
       const res = await fetch('/api/upload', { method: 'POST', body });
       if (!res.ok) throw new Error(res.statusText);
       const newProduct = await res.json();
-
       toast.success('Upload received!');
       setOpen(false);
       setName('');
       setPrice('');
       setFile(null);
       setPicked([]);
-
       onUploadSuccess?.(newProduct.variants);
       router.refresh();
     } catch (err: any) {
@@ -98,18 +93,25 @@ export default function ImageUploader({
           + Add product
         </Button>
       </DialogTrigger>
-      <DialogContent className='w-full max-w-sm sm:max-w-md rounded-lg'>
-        <DialogTitle>Add New Product</DialogTitle>
-        <DialogDescription>
-          Upload an image and pick colors.
-        </DialogDescription>
 
-        <Card className='space-y-6 p-4'>
+      <DialogContent
+        className='
+          w-full max-w-sm 
+          sm:max-w-md 
+          rounded-lg 
+          p-2 sm:p-4 
+          max-h-[90vh] overflow-y-auto
+        '
+      >
+        <DialogTitle>Add New Product</DialogTitle>
+        <DialogDescription>Upload an image and pick colors.</DialogDescription>
+
+        <Card className='space-y-4 p-0 sm:p-4'>
           <CardHeader>
             <CardTitle>Upload & Recolor</CardTitle>
           </CardHeader>
           <CardInner className='space-y-4'>
-            {/* Product Name */}
+            {/* Name */}
             <div className='space-y-1'>
               <Label>Product Name</Label>
               <Input
@@ -158,15 +160,15 @@ export default function ImageUploader({
               <motion.div
                 initial={{ opacity: 0.4 }}
                 animate={{ opacity: 1 }}
-                transition={{ repeat: Infinity, duration: 0.8, repeatType: 'reverse' }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 0.8,
+                  repeatType: 'reverse',
+                }}
                 className='h-12 rounded bg-muted w-full'
               />
             ) : (
-              <Button
-                className='w-full'
-                disabled={!isValid}
-                onClick={upload}
-              >
+              <Button className='w-full' disabled={!isValid} onClick={upload}>
                 Upload & Generate
               </Button>
             )}
@@ -185,9 +187,7 @@ function ImagePicker({
   onChange: (file: File | null) => void;
 }) {
   const onDrop = useCallback(
-    (accepted: File[]) => {
-      if (accepted.length) onChange(accepted[0]);
-    },
+    (accepted: File[]) => accepted[0] && onChange(accepted[0]),
     [onChange]
   );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -201,13 +201,14 @@ function ImagePicker({
       <div
         {...getRootProps()}
         className={clsx(
-          'w-full h-40 flex items-center justify-center border-2 border-dashed rounded cursor-pointer',
+          'w-full h-32 sm:h-40 flex items-center justify-center',
+          'border-2 border-dashed rounded cursor-pointer',
           isDragActive ? 'border-primary bg-muted' : 'border-muted'
         )}
       >
         <input {...getInputProps()} />
         {!file ? (
-          <p className='text-sm text-muted-foreground text-center'>
+          <p className='text-sm text-muted-foreground text-center px-2'>
             Drag or click to upload an image
           </p>
         ) : (
@@ -237,7 +238,9 @@ function ColorPicker({
       <div className='flex flex-wrap gap-2 mt-1'>
         {options.map((color) => {
           const isSelected = selected.includes(color);
-          const isLight = ['white', 'beige', 'lavender', 'pink'].includes(color);
+          const isLight = ['white', 'beige', 'lavender', 'pink'].includes(
+            color
+          );
           return (
             <button
               key={color}
@@ -245,14 +248,18 @@ function ColorPicker({
               onClick={() => onToggle(color)}
               aria-pressed={isSelected}
               className={clsx(
-                'w-9 h-9 rounded border-2 flex items-center justify-center',
+                'flex items-center justify-center rounded border-2',
                 isSelected
-                  ? 'border-primary ring-2 ring-primary'
-                  : 'border-muted'
+                  ? 'w-8 h-8 sm:w-9 sm:h-9 border-primary ring-2 ring-primary'
+                  : 'w-8 h-8 sm:w-9 sm:h-9 border-muted'
               )}
               style={{ backgroundColor: color }}
             >
-              {isSelected && <Check className={isLight ? 'text-black' : 'text-white'} />}
+              {isSelected && (
+                <Check
+                  className={clsx(isLight ? 'text-black' : 'text-white')}
+                />
+              )}
               <span className='sr-only'>{color}</span>
             </button>
           );
