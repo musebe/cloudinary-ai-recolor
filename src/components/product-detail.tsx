@@ -1,13 +1,13 @@
-// components/ProductDetail.tsx
+// src/components/ProductDetail.tsx
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import clsx from 'clsx';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
 import type { Product } from './product-card';
-import { SkeletonImage } from './SkeletonImage';
 
 interface ProductDetailProps {
   product: Product;
@@ -25,7 +25,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     );
     if (!btn) return;
 
-    // Only scroll horizontally—no vertical jump
     const left = btn.offsetLeft;
     const width = btn.offsetWidth;
     const target = left - gallery.clientWidth / 2 + width / 2;
@@ -47,14 +46,15 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 transition={{ duration: 0.3 }}
                 className='absolute inset-0'
               >
-                <SkeletonImage
+                <Image
                   src={product.variants[active]}
                   alt={`${product.name} ${active + 1}`}
                   fill
                   priority
                   sizes='(max-width: 768px) 100vw, 50vw'
+                  unoptimized
+                  loader={({ src }) => src}
                   className='object-contain'
-                  wrapperClassName='w-full h-full'
                 />
               </motion.div>
             </AnimatePresence>
@@ -85,14 +85,14 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                         : 'opacity-70 hover:opacity-100'
                     )}
                   >
-                    <SkeletonImage
+                    <Image
                       src={src}
                       alt={`Thumbnail ${i + 1}`}
                       width={80}
                       height={80}
-                      priority={i === 0}
+                      unoptimized
+                      loader={({ src }) => src}
                       className='object-contain w-full h-full rounded-xl'
-                      wrapperClassName='w-full h-full'
                     />
                   </button>
                   <figcaption className='text-xs text-muted-foreground capitalize'>

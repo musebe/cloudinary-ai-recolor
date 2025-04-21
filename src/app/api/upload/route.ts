@@ -27,10 +27,7 @@ export async function POST(req: NextRequest) {
     // Read the file into a Buffer
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    // Build eager transformations as strings
-    //  - generative recolor
-    //  - apply watermark layer
-    //  - auto format & quality
+    // Build eager transformations
     const eager = colors.map((c) =>
         [
             `e_gen_recolor:prompt_tshirt;to-color_${c}`,
@@ -40,11 +37,15 @@ export async function POST(req: NextRequest) {
         ].join("/")
     );
 
-    // Upload original + eager transforms (async)
+    // Upload original + eager transforms (synchronous)
     const uploadResult = await new Promise<UploadApiResponse>((resolve, reject) => {
         cloudinary.v2.uploader
             .upload_stream(
-                { folder: FOLDER, eager, eager_async: true },
+                {
+                    folder: FOLDER,
+                    eager,           // run transforms at upload time
+                    // eager_async: true  ← removed so result.eager is populated
+                },
                 (err, result) => (err ? reject(err) : resolve(result!))
             )
             .end(buffer);
@@ -57,7 +58,7 @@ export async function POST(req: NextRequest) {
         .quality("auto")
         .toURL();
 
-    // Eagerly generated variant URLs
+    // Eagerly generated variant URLs now exist immediately
     const variants = (uploadResult.eager || []).map((v: { secure_url: any; }) => v.secure_url!);
 
     // Persist product
