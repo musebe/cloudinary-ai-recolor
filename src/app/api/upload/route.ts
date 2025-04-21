@@ -6,6 +6,10 @@ import { readProducts, writeProducts, Product } from "@/lib/fileDb";
 import { cld } from "@/lib/cld";
 
 const FOLDER = process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER!;
+// Your Vercel deployment URL:
+const WEBHOOK =
+    process.env.CLOUDINARY_WEBHOOK_URL ??
+    "https://cloudinary-ai-recolor.vercel.app/api/cloudinary/webhook";
 
 cloudinary.v2.config({
     cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!,
@@ -27,8 +31,8 @@ export async function POST(req: NextRequest) {
     // Read the file into a Buffer
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    // Build eager transformations
-    const eager = colors.map((c) =>
+    // Build your eager transforms
+    const eager = colors.map(c =>
         [
             `e_gen_recolor:prompt_tshirt;to-color_${c}`,
             `l_${FOLDER}:watermark,g_south_east,x_20,y_20`,
@@ -37,29 +41,28 @@ export async function POST(req: NextRequest) {
         ].join("/")
     );
 
-    // Upload original + eager transforms (synchronous)
+    // Upload original + schedule eager transforms in the background
     const uploadResult = await new Promise<UploadApiResponse>((resolve, reject) => {
-        cloudinary.v2.uploader
-            .upload_stream(
-                {
-                    folder: FOLDER,
-                    eager,           // run transforms at upload time
-                    // eager_async: true  ← removed so result.eager is populated
-                },
-                (err, result) => (err ? reject(err) : resolve(result!))
-            )
-            .end(buffer);
+        cloudinary.v2.uploader.upload_stream(
+            {
+                folder: FOLDER,
+                eager,           // same recolor transforms
+                eager_async: true,
+                notification_url: WEBHOOK,
+            },
+            (err, result) => err ? reject(err) : resolve(result!)
+        ).end(buffer);
     });
 
-    // Primary thumbnail URL
+    // Build a fast thumb
     const thumb = cld
         .image(uploadResult.public_id)
         .format("auto")
         .quality("auto")
         .toURL();
 
-    // Eagerly generated variant URLs now exist immediately
-    const variants = (uploadResult.eager || []).map((v: { secure_url: any; }) => v.secure_url!);
+    // Variants will be patched in later by your webhook handler
+    const variants: string[] = [];
 
     // Persist product
     const product: Product = {
