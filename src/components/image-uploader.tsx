@@ -1,4 +1,3 @@
-// src/components/ImageUploader.tsx
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
@@ -19,6 +18,11 @@ import {
   CardTitle,
   CardContent as CardInner,
 } from '@/components/ui/card';
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from '@/components/ui/collapsible';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
 import { Check } from 'lucide-react';
@@ -39,7 +43,11 @@ const COLORS = [
 
 type Color = (typeof COLORS)[number];
 
-export default function ImageUploader() {
+export default function ImageUploader({
+  onUploadSuccess,
+}: {
+  onUploadSuccess?: (urls: string[]) => void;
+}) {
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const [picked, setPicked] = useState<Color[]>([]);
@@ -78,18 +86,22 @@ export default function ImageUploader() {
       setName('');
       setPrice('');
       setFile(null);
-      setPicked([]);
-      // scroll to previews
-      setPreviewUrls(
-        picked.map(
-          (c) =>
-            `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/e_gen_recolor:prompt_tshirt;to-color_${c}/f_auto/q_auto/v1/${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER}/${newProduct.publicId}`
-        )
+
+      // build recolor-preview URLs
+      const urls = picked.map(
+        (c) =>
+          `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/e_gen_recolor:prompt_tshirt;to-color_${c}/f_auto/q_auto/v1/${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER}/${newProduct.publicId}`
       );
+      setPreviewUrls(urls);
+
+      // scroll into view after modal closes
       setTimeout(
         () => previewRef.current?.scrollIntoView({ behavior: 'smooth' }),
         300
       );
+
+      // optional callback for parent
+      onUploadSuccess?.(urls);
       router.refresh();
     } catch (err: any) {
       setError(err.message || 'Upload failed');
@@ -97,7 +109,7 @@ export default function ImageUploader() {
     } finally {
       setLoading(false);
     }
-  }, [file, picked, name, price, isValid, router]);
+  }, [file, picked, name, price, isValid, router, onUploadSuccess]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -115,6 +127,7 @@ export default function ImageUploader() {
             <CardTitle>Upload & Recolor</CardTitle>
           </CardHeader>
           <CardInner className='space-y-4'>
+            {/* Product Name */}
             <div className='space-y-2'>
               <Label>Product Name</Label>
               <Input
@@ -127,6 +140,7 @@ export default function ImageUploader() {
               )}
             </div>
 
+            {/* Price */}
             <div className='space-y-2'>
               <Label>Price ($)</Label>
               <Input
@@ -139,7 +153,10 @@ export default function ImageUploader() {
               )}
             </div>
 
+            {/* Image Picker */}
             <ImagePicker file={file} onChange={setFile} />
+
+            {/* Color Picker */}
             <ColorPicker
               options={COLORS}
               selected={picked}
@@ -152,6 +169,7 @@ export default function ImageUploader() {
 
             {error && <p className='text-destructive text-sm'>{error}</p>}
 
+            {/* Upload Button */}
             {loading ? (
               <motion.div
                 initial={{ opacity: 0.4 }}
@@ -169,16 +187,24 @@ export default function ImageUploader() {
               </Button>
             )}
 
-            {previewUrls.length > 0 && (
-              <div ref={previewRef} className='grid grid-cols-2 gap-2 mt-4'>
-                {previewUrls.map((url, i) => (
-                  <img
-                    key={i}
-                    src={url}
-                    alt={`Preview ${i}`}
-                    className='w-full aspect-square rounded border object-contain'
-                  />
-                ))}
+            {/* Collapsible Previews (only after upload & colors selected) */}
+            {previewUrls.length > 0 && picked.length > 0 && (
+              <div ref={previewRef}>
+                <Collapsible>
+                  <CollapsibleTrigger className='w-full flex items-center justify-between rounded bg-muted px-4 py-2 text-sm font-medium hover:bg-muted/80'>
+                    Show Generated Previews ({previewUrls.length})
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className='mt-2 grid grid-cols-2 gap-2 max-h-60 overflow-y-auto'>
+                    {previewUrls.map((url, i) => (
+                      <img
+                        key={i}
+                        src={url}
+                        alt={`Preview ${i + 1}`}
+                        className='w-full aspect-square rounded border object-contain'
+                      />
+                    ))}
+                  </CollapsibleContent>
+                </Collapsible>
               </div>
             )}
           </CardInner>
