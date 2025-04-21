@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,11 +18,6 @@ import {
   CardTitle,
   CardContent as CardInner,
 } from '@/components/ui/card';
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from '@/components/ui/collapsible';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
 import { Check } from 'lucide-react';
@@ -46,7 +41,7 @@ type Color = (typeof COLORS)[number];
 export default function ImageUploader({
   onUploadSuccess,
 }: {
-  onUploadSuccess?: (urls: string[]) => void;
+  onUploadSuccess?: (variants: string[]) => void;
 }) {
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
@@ -56,8 +51,6 @@ export default function ImageUploader({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
-  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
-  const previewRef = useRef<HTMLDivElement>(null);
 
   const isValid =
     !!name.trim() &&
@@ -81,27 +74,14 @@ export default function ImageUploader({
       if (!res.ok) throw new Error(res.statusText);
       const newProduct = await res.json();
 
-      toast.success('Product uploaded!');
+      toast.success('Upload received!');
       setOpen(false);
       setName('');
       setPrice('');
       setFile(null);
+      setPicked([]);
 
-      // build recolor-preview URLs
-      const urls = picked.map(
-        (c) =>
-          `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/e_gen_recolor:prompt_tshirt;to-color_${c}/f_auto/q_auto/v1/${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER}/${newProduct.publicId}`
-      );
-      setPreviewUrls(urls);
-
-      // scroll into view after modal closes
-      setTimeout(
-        () => previewRef.current?.scrollIntoView({ behavior: 'smooth' }),
-        300
-      );
-
-      // optional callback for parent
-      onUploadSuccess?.(urls);
+      onUploadSuccess?.(newProduct.variants);
       router.refresh();
     } catch (err: any) {
       setError(err.message || 'Upload failed');
@@ -114,12 +94,14 @@ export default function ImageUploader({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant='default'>+ Add product</Button>
+        <Button variant='default' className='w-full sm:w-auto'>
+          + Add product
+        </Button>
       </DialogTrigger>
-      <DialogContent className='w-full max-w-md sm:rounded-lg sm:w-[90vw]'>
+      <DialogContent className='w-full max-w-sm sm:max-w-md rounded-lg'>
         <DialogTitle>Add New Product</DialogTitle>
         <DialogDescription>
-          Upload an image, choose colors, and generate recolored previews.
+          Upload an image and pick colors.
         </DialogDescription>
 
         <Card className='space-y-6 p-4'>
@@ -128,12 +110,13 @@ export default function ImageUploader({
           </CardHeader>
           <CardInner className='space-y-4'>
             {/* Product Name */}
-            <div className='space-y-2'>
+            <div className='space-y-1'>
               <Label>Product Name</Label>
               <Input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder='T‑Shirt'
+                className='w-full'
               />
               {!name.trim() && (
                 <p className='text-xs text-destructive'>Name is required.</p>
@@ -141,12 +124,13 @@ export default function ImageUploader({
             </div>
 
             {/* Price */}
-            <div className='space-y-2'>
+            <div className='space-y-1'>
               <Label>Price ($)</Label>
               <Input
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder='29.99'
+                className='w-full'
               />
               {price && isNaN(Number(price)) && (
                 <p className='text-xs text-destructive'>Must be a number.</p>
@@ -174,38 +158,17 @@ export default function ImageUploader({
               <motion.div
                 initial={{ opacity: 0.4 }}
                 animate={{ opacity: 1 }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 0.8,
-                  repeatType: 'reverse',
-                }}
-                className='h-12 rounded bg-muted'
+                transition={{ repeat: Infinity, duration: 0.8, repeatType: 'reverse' }}
+                className='h-12 rounded bg-muted w-full'
               />
             ) : (
-              <Button className='w-full' disabled={!isValid} onClick={upload}>
+              <Button
+                className='w-full'
+                disabled={!isValid}
+                onClick={upload}
+              >
                 Upload & Generate
               </Button>
-            )}
-
-            {/* Collapsible Previews (only after upload & colors selected) */}
-            {previewUrls.length > 0 && picked.length > 0 && (
-              <div ref={previewRef}>
-                <Collapsible>
-                  <CollapsibleTrigger className='w-full flex items-center justify-between rounded bg-muted px-4 py-2 text-sm font-medium hover:bg-muted/80'>
-                    Show Generated Previews ({previewUrls.length})
-                  </CollapsibleTrigger>
-                  <CollapsibleContent className='mt-2 grid grid-cols-2 gap-2 max-h-60 overflow-y-auto'>
-                    {previewUrls.map((url, i) => (
-                      <img
-                        key={i}
-                        src={url}
-                        alt={`Preview ${i + 1}`}
-                        className='w-full aspect-square rounded border object-contain'
-                      />
-                    ))}
-                  </CollapsibleContent>
-                </Collapsible>
-              </div>
             )}
           </CardInner>
         </Card>
@@ -243,16 +206,16 @@ function ImagePicker({
         )}
       >
         <input {...getInputProps()} />
-        {file ? (
+        {!file ? (
+          <p className='text-sm text-muted-foreground text-center'>
+            Drag or click to upload an image
+          </p>
+        ) : (
           <img
             src={URL.createObjectURL(file)}
             alt='Preview'
             className='h-full object-contain'
           />
-        ) : (
-          <p className='text-sm text-muted-foreground'>
-            Drag or click to upload an image
-          </p>
         )}
       </div>
     </div>
@@ -269,18 +232,12 @@ function ColorPicker({
   onToggle: (color: Color) => void;
 }) {
   return (
-    <div>
+    <div className='space-y-2'>
       <Label>Available Colors</Label>
-      <div className='flex flex-wrap gap-2 mt-2'>
+      <div className='flex flex-wrap gap-2 mt-1'>
         {options.map((color) => {
           const isSelected = selected.includes(color);
-          const isLight = [
-            'white',
-            'lightgray',
-            'beige',
-            'lavender',
-            'pink',
-          ].includes(color);
+          const isLight = ['white', 'beige', 'lavender', 'pink'].includes(color);
           return (
             <button
               key={color}
@@ -288,21 +245,14 @@ function ColorPicker({
               onClick={() => onToggle(color)}
               aria-pressed={isSelected}
               className={clsx(
-                'w-9 h-9 rounded border-2 relative flex items-center justify-center transition',
+                'w-9 h-9 rounded border-2 flex items-center justify-center',
                 isSelected
                   ? 'border-primary ring-2 ring-primary'
                   : 'border-muted'
               )}
               style={{ backgroundColor: color }}
             >
-              {isSelected && (
-                <Check
-                  className={clsx(
-                    'w-4 h-4',
-                    isLight ? 'text-black' : 'text-white'
-                  )}
-                />
-              )}
+              {isSelected && <Check className={isLight ? 'text-black' : 'text-white'} />}
               <span className='sr-only'>{color}</span>
             </button>
           );
