@@ -46,13 +46,12 @@ export default function AboutPage() {
         className='text-center space-y-4'
       >
         <h1 className='text-4xl font-extrabold'>
-          About Cloudinary AI Re‑Color Demo Store
+          Cloudinary AI Re‑Color Demo Store
         </h1>
         <p className='text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed'>
           A headless demo shop that showcases how Cloudinary’s AI
           transformations can supercharge your storefront with instant color
-          variants, watermarking, and optimized delivery—all without a
-          traditional database.
+          variants, watermarking, and optimized delivery.
         </p>
         <div className='mx-auto w-full max-w-xl overflow-hidden rounded-2xl shadow-lg'>
           <Image

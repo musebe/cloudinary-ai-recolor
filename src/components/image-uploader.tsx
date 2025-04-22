@@ -94,23 +94,22 @@ export default function ImageUploader({
         </Button>
       </DialogTrigger>
 
-      <DialogContent
-        className='
-          w-full max-w-sm 
-          sm:max-w-md 
-          rounded-lg 
-          p-2 sm:p-4 
-          max-h-[90vh] overflow-y-auto
-        '
-      >
-        <DialogTitle>Add New Product</DialogTitle>
-        <DialogDescription>Upload an image and pick colors.</DialogDescription>
+      <DialogContent className='w-full max-w-md sm:max-w-lg md:max-w-xl p-4 sm:p-6 rounded-xl max-h-[90vh] overflow-y-auto'>
+        <DialogTitle className='text-lg sm:text-xl'>
+          Add New Product
+        </DialogTitle>
+        <DialogDescription className='text-sm sm:text-base mb-4'>
+          Upload an image and pick available color options.
+        </DialogDescription>
 
-        <Card className='space-y-4 p-0 sm:p-4'>
-          <CardHeader>
-            <CardTitle>Upload & Recolor</CardTitle>
+        <Card className='p-4 space-y-6'>
+          <CardHeader className='p-0'>
+            <CardTitle className='text-base sm:text-lg'>
+              Upload & Recolor
+            </CardTitle>
           </CardHeader>
-          <CardInner className='space-y-4'>
+
+          <CardInner className='space-y-5'>
             {/* Name */}
             <div className='space-y-1'>
               <Label>Product Name</Label>
@@ -153,7 +152,7 @@ export default function ImageUploader({
               }
             />
 
-            {error && <p className='text-destructive text-sm'>{error}</p>}
+            {error && <p className='text-sm text-destructive'>{error}</p>}
 
             {/* Upload Button */}
             {loading ? (
@@ -201,8 +200,9 @@ function ImagePicker({
       <div
         {...getRootProps()}
         className={clsx(
-          'w-full h-32 sm:h-40 flex items-center justify-center',
-          'border-2 border-dashed rounded cursor-pointer',
+          'w-full h-36 sm:h-44 flex items-center justify-center',
+          'border-2 border-dashed rounded-lg transition-all duration-200',
+          'cursor-pointer bg-background hover:bg-muted/50',
           isDragActive ? 'border-primary bg-muted' : 'border-muted'
         )}
       >
@@ -215,7 +215,7 @@ function ImagePicker({
           <img
             src={URL.createObjectURL(file)}
             alt='Preview'
-            className='h-full object-contain'
+            className='h-full max-w-full object-contain rounded-md'
           />
         )}
       </div>
@@ -235,7 +235,7 @@ function ColorPicker({
   return (
     <div className='space-y-2'>
       <Label>Available Colors</Label>
-      <div className='flex flex-wrap gap-2 mt-1'>
+      <div className='flex flex-wrap gap-3 mt-1'>
         {options.map((color) => {
           const isSelected = selected.includes(color);
           const isLight = ['white', 'beige', 'lavender', 'pink'].includes(
@@ -248,16 +248,19 @@ function ColorPicker({
               onClick={() => onToggle(color)}
               aria-pressed={isSelected}
               className={clsx(
-                'flex items-center justify-center rounded border-2',
+                'flex items-center justify-center rounded-full transition-all duration-150',
                 isSelected
-                  ? 'w-8 h-8 sm:w-9 sm:h-9 border-primary ring-2 ring-primary'
-                  : 'w-8 h-8 sm:w-9 sm:h-9 border-muted'
+                  ? 'w-9 h-9 sm:w-10 sm:h-10 border-2 border-primary ring-2 ring-primary'
+                  : 'w-9 h-9 sm:w-10 sm:h-10 border border-muted'
               )}
               style={{ backgroundColor: color }}
             >
               {isSelected && (
                 <Check
-                  className={clsx(isLight ? 'text-black' : 'text-white')}
+                  className={clsx(
+                    'w-4 h-4',
+                    isLight ? 'text-black' : 'text-white'
+                  )}
                 />
               )}
               <span className='sr-only'>{color}</span>

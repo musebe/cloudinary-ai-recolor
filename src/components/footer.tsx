@@ -8,7 +8,7 @@ export default function SiteFooter() {
         <p>
           Built by{' '}
           <Link
-            href='https://github.com/eugenemusebe'
+            href='https://github.com/musebe/cloudinary-ai-recolor'
             target='_blank'
             rel='noopener noreferrer'
             className='underline hover:text-primary'
